@@ -1,0 +1,21 @@
+let SpecReporter = require('jasmine-spec-reporter').SpecReporter;
+module.exports = provideConfig => {
+    const defaultConfig = {
+        baseUrl: 'https://employee-web-qa.herokuapp.com/login',
+        specs: ['../specs/non-auth/*.spec.js'],
+        onPrepare: function () {
+            jasmine.getEnv().addReporter(new SpecReporter({
+              spec: {
+                displayStacktrace: true
+              }
+            }));
+          },
+        jasmineNodeOpts: { random:false }
+    }
+   
+    return Object.assign(
+        {},
+        defaultConfig,
+        provideConfig
+    )
+}
